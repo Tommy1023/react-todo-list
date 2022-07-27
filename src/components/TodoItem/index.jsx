@@ -10,10 +10,11 @@ type TodoItemProps = {
   done: boolean,
   text: string,
   onToggleItem: (id: string) => void,
+  onDeleteTodo: (id: string) => void,
 };
 
 const TodoItem: React.FC<TodoItemProps> = (props) => {
-  const { id, text, done, onToggleItem } = props;
+  const { id, text, done, onToggleItem, onDeleteTodo } = props;
 
   const atClick = () => {
     onToggleItem(id);
@@ -26,7 +27,14 @@ const TodoItem: React.FC<TodoItemProps> = (props) => {
         {text}
       </div>
       {/* FIXME delete not working */}
-      <button className={cx('btn btn-danger')}>Delete</button>
+      <button
+        className={cx('btn btn-danger')}
+        onClick={() => {
+          onDeleteTodo(id);
+        }}
+      >
+        Delete
+      </button>
     </section>
   );
 };
